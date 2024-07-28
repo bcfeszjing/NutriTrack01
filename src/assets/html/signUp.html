@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTrack - Sign Up</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <img src="../img/appicon.png" alt="App Logo" class="logo">
+    <h2>Sign Up</h2>
+    <form id="signupForm" action="../php/signUp.php" method="post">
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <div class="error-message-signUp" id="errorMessage" style="display: none;"></div>
+        <input type="submit" value="Sign Up" disabled>
+    </form>
+    <a href="../html/login.html">Already have an account? Login</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const signupForm = document.getElementById('signupForm');
+            const usernameInput = document.getElementById('username');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const submitButton = document.querySelector('input[type="submit"]');
+            const errorMessage = document.getElementById('errorMessage');
+
+            function checkInput() {
+                const username = usernameInput.value.trim();
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+
+                const allFilled = username !== '' && email !== '' && password !== '';
+                submitButton.disabled = !allFilled;
+                submitButton.style.backgroundColor = allFilled ? '#5cb85c' : 'lightgrey';
+                submitButton.style.cursor = allFilled ? 'pointer' : 'not-allowed';
+            }
+
+            signupForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+                checkInput(); // Ensure fields are filled before submitting
+
+                if (!submitButton.disabled) {
+                    const formData = new FormData(signupForm);
+                    try {
+                        const response = await fetch(signupForm.action, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const data = await response.json();
+                        
+                        if (response.ok && data.success) {
+                            window.location.href = 'login.html'; // Redirect on successful signup
+                        } else {
+                            errorMessage.textContent = data.message; // Display error message
+                            errorMessage.style.display = 'block'; // Show the error message
+
+                            // Clear error message after 2 seconds
+                            setTimeout(() => {
+                                errorMessage.textContent = '';
+                                errorMessage.style.display = 'none';
+                            }, 2000);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        errorMessage.textContent = 'An error occurred. Please try again.'; // Generic error message
+                        errorMessage.style.display = 'block'; // Show the error message
+
+                        // Clear error message after 2 seconds
+                        setTimeout(() => {
+                            errorMessage.textContent = '';
+                            errorMessage.style.display = 'none';
+                        }, 2000);
+                    }
+                }
+            });
+
+            usernameInput.addEventListener('input', checkInput);
+            emailInput.addEventListener('input', checkInput);
+            passwordInput.addEventListener('input', checkInput);
+            checkInput(); // Initial check
+        });
+    </script>
+</body>
+</html>
