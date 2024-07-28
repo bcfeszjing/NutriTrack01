@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Loader</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Container for dynamic HTML content -->
+  <div [innerHTML]="indexHtmlContent | safeHtml"></div>
+</ion-content>
