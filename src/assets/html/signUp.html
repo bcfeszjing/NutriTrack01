@@ -52,7 +52,7 @@
                         const data = await response.json();
                         
                         if (response.ok && data.success) {
-                            window.location.href = 'login.html'; // Redirect on successful signup
+                            window.location.href = '../html/login.html'; // Redirect on successful signup
                         } else {
                             errorMessage.textContent = data.message; // Display error message
                             errorMessage.style.display = 'block'; // Show the error message

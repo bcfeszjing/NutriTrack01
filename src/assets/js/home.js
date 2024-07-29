@@ -15,9 +15,9 @@ function getCurrentDate() {
 
 function displayTodayMeals() {
     console.log('displayTodayMeals function called');
-    fetch('/NutriTrack/www/php/getTodayMeals.php')
+    fetch('/NutriTrack01/src/assets/php/getTodayMeals.php')
         .then(response => {
-            console.log('getTodayMeals.php response:', response);
+            console.log('../php/getTodayMeals.php response:', response);
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
             }
@@ -46,9 +46,9 @@ function displayTodayMeals() {
 
 function calculateTodayCalories() {
     console.log('calculateTodayCalories function called');
-    fetch('/NutriTrack/www/php/getTodayMeals.php')
+    fetch('/NutriTrack01/src/assets/php/getTodayMeals.php')
         .then(response => {
-            console.log('getTodayMeals.php response:', response);
+            console.log('../php/getTodayMeals.php response:', response);
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
             }
@@ -74,9 +74,9 @@ function calculateTodayCalories() {
 
 function fetchUsername() {
     console.log('fetchUsername function called');
-    fetch('/NutriTrack/www/php/getUserData.php')
+    fetch('/NutriTrack01/src/assets/php/getUserData.php')
         .then(response => {
-            console.log('getUserData.php response:', response);
+            console.log('../php/getUserData.php response:', response);
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
             }

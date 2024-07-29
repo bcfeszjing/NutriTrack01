@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/NutriTrack/www/php/getUserData.php')
+    fetch('/NutriTrack01/src/assets/php/getUserData.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
@@ -24,7 +24,7 @@ function goBack() {
 }
 
 function calculateRDI() {
-    fetch('/NutriTrack/www/php/getUserData.php')
+    fetch('/NutriTrack01/src/assets/php/getUserData.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
@@ -98,7 +98,7 @@ function saveResult() {
 
     updateRDI(rdiValue)
         .then(() => {
-            window.location.href = 'report.html';
+            window.location.href = '../html/report.html';
         })
         .catch(error => console.error('Error saving RDI:', error));
 }
@@ -109,7 +109,7 @@ function recalculate() {
 }
 
 function updateRDI(rdiValue) {
-    return fetch('/NutriTrack/www/php/updateRDI.php', {
+    return fetch('/NutriTrack01/src/assets/php/updateRDI.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -38,7 +38,7 @@ async function changePeriod(period = 'thisWeek') {
 // Function to fetch data from the server
 async function fetchData(period) {
     try {
-        const response = await fetch(`php/report.php?period=${period}`);
+        const response = await fetch(`../php/report.php?period=${period}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -286,11 +286,11 @@ function getCategoryColor(category) {
 
 
 function goToGoalPage() {
-    window.location.href = 'goal.html'; 
+    window.location.href = '../html/goal.html'; 
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('/NutriTrack/www/php/getRDI.php')
+    fetch('/NutriTrack01/src/assets/php/getRDI.php')
         .then(response => response.json())
         .then(data => {
             if (data.success) {

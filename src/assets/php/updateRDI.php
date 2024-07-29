@@ -1,12 +1,12 @@
 <?php
 header('Content-Type: application/json');
 
-// Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nutritrack";
-$port = 3307;
+// Remote database connection details
+$servername = "sql12.freesqldatabase.com";
+$username = "sql12722639";
+$password = "paN7mzzK8i"; 
+$dbname = "sql12722639";
+$port = 3306;
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
