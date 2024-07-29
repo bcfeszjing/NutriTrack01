@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Set the category and date from query parameters
+    // Ensure the content is only set once
     const params = new URLSearchParams(window.location.search);
     let category = params.get('category');
     const date = params.get('date');
@@ -41,6 +41,11 @@ async function fetchFoodDetails() {
 }
 
 function displayFoodDetails(foodDetails) {
+    if (!foodDetails) {
+        alert('No food details found.');
+        return;
+    }
+
     // Capitalize the first letter of the food name
     const capitalizedFoodName = foodDetails.name.charAt(0).toUpperCase() + foodDetails.name.slice(1);
 
@@ -80,7 +85,7 @@ function saveFoodDetails() {
         carbs
     };
 
-    fetch('http://localhost/NutriTrack01/src/assets/php/saveFoodDetails.php', {
+    fetch('../php/saveFoodDetails.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

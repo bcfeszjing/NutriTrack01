@@ -1,6 +1,6 @@
 //profile.js
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/NutriTrack01/src/assets/php/getUserData.php')
+    fetch('../php/getUserData.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
@@ -169,7 +169,7 @@ function calculateAge(birthDate) {
 function saveUserData(field, value, isPassword = false) {
     const data = { field: field, value: value };
 
-    fetch('/NutriTrack01/src/assets/php/updateUserData.php', {
+    fetch('../php/updateUserData.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -194,9 +194,20 @@ function saveUserData(field, value, isPassword = false) {
 }
 
 function logout() {
-    fetch('/NutriTrack01/src/assets/php/logout.php')
-        .then(() => {
-            location.href = 'index.html';
+    fetch('../php/logout.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
         })
-        .catch(error => console.error('Error:', error));
+        .then(data => {
+            console.log(data.message);
+            location.href = 'http://nutritrack.iceiy.com/html/index.html';
+        })
+        .catch(error => {
+            console.error('Logout error:', error);
+            alert('Logout failed. Please try again.');
+        });
 }
+
