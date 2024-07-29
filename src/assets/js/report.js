@@ -290,7 +290,7 @@ function goToGoalPage() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('/NutriTrack01/src/assets/php/getRDI.php')
+    fetch('../php/getRDI.php')
         .then(response => response.json())
         .then(data => {
             if (data.success) {

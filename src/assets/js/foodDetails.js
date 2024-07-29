@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function fetchFoodDetails(foodName, date, category) {
     const userId = sessionStorage.getItem('userId'); // Assuming user ID is stored in sessionStorage
 
-    fetch(`/NutriTrack01/src/assets/php/getFoodDetails.php?user_id=${userId}&food_name=${foodName}&date=${date}&category=${category}`)
+    fetch(`../php/getFoodDetails.php?user_id=${userId}&food_name=${foodName}&date=${date}&category=${category}`)
         .then(response => response.json())
         .then(foodDetails => {
             if (foodDetails) {
@@ -101,7 +101,7 @@ function saveEditedFood() {
         }
     };
 
-    fetch('/NutriTrack01/src/assets/php/updateFoodDetails.php', {
+    fetch('../php/updateFoodDetails.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ function deleteFood() {
         category
     };
 
-    fetch('/NutriTrack01/src/assets/php/deleteFoodDetails.php', {
+    fetch('../php/deleteFoodDetails.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

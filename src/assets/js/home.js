@@ -15,7 +15,7 @@ function getCurrentDate() {
 
 function displayTodayMeals() {
     console.log('displayTodayMeals function called');
-    fetch('/NutriTrack01/src/assets/php/getTodayMeals.php')
+    fetch('../php/getTodayMeals.php')
         .then(response => {
             console.log('../php/getTodayMeals.php response:', response);
             if (!response.ok) {
@@ -46,7 +46,7 @@ function displayTodayMeals() {
 
 function calculateTodayCalories() {
     console.log('calculateTodayCalories function called');
-    fetch('/NutriTrack01/src/assets/php/getTodayMeals.php')
+    fetch('../php/getTodayMeals.php')
         .then(response => {
             console.log('../php/getTodayMeals.php response:', response);
             if (!response.ok) {
@@ -74,7 +74,7 @@ function calculateTodayCalories() {
 
 function fetchUsername() {
     console.log('fetchUsername function called');
-    fetch('/NutriTrack01/src/assets/php/getUserData.php')
+    fetch('../php/getUserData.php')
         .then(response => {
             console.log('../php/getUserData.php response:', response);
             if (!response.ok) {
