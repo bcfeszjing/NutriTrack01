@@ -1,15 +1,15 @@
 <?php
 header('Content-Type: application/json');
 
-// Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nutritrack";
-$port = 3307;
+// Remote database connection details
+$servername = "sql12.freesqldatabase.com";
+$usernameDB = "sql12722639";
+$passwordDB = "paN7mzzK8i"; 
+$dbname = "sql12722639";
+$port = 3306;
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
+$conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname, $port);
 
 // Check connection
 if ($conn->connect_error) {
@@ -28,7 +28,7 @@ if (!isset($_SESSION['user_id'])) {
 
 // Fetch RDI value for the logged-in user
 $userId = $_SESSION['user_id'];
-$sql = "SELECT rdi FROM rdi WHERE user_id = ?";
+$sql = "SELECT rdi FROM rdi WHERE user_id = ? ORDER BY id DESC LIMIT 1";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('i', $userId);
 $stmt->execute();
@@ -45,5 +45,6 @@ if ($result) {
     echo json_encode(['success' => false, 'message' => 'Query failed: ' . $conn->error]);
 }
 
+$stmt->close();
 $conn->close();
 ?>

@@ -1,6 +1,6 @@
 //profile.js
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/NutriTrack/www/php/getUserData.php')
+    fetch('/NutriTrack01/src/assets/php/getUserData.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data.profile_picture) {
                     document.getElementById('profile-pic').src = `data:image/jpeg;base64,${data.profile_picture}`;
                 } else {
-                    document.getElementById('profile-pic').src = 'img/5951752.png'; // Default profile picture
+                    document.getElementById('profile-pic').src = '../img/5951752.png'; // Default profile picture
                 }
             }
         })
@@ -57,7 +57,7 @@ function openCamera() {
 }
 
 function removePhoto() {
-    document.getElementById('profile-pic').src = 'img/5951752.png';
+    document.getElementById('profile-pic').src = '../img/5951752.png';
     saveUserData('profile_picture', null);
     closeModal();
 }
@@ -169,7 +169,7 @@ function calculateAge(birthDate) {
 function saveUserData(field, value, isPassword = false) {
     const data = { field: field, value: value };
 
-    fetch('/NutriTrack/www/php/updateUserData.php', {
+    fetch('/NutriTrack01/src/assets/php/updateUserData.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -194,7 +194,7 @@ function saveUserData(field, value, isPassword = false) {
 }
 
 function logout() {
-    fetch('/NutriTrack/www/php/logout.php')
+    fetch('/NutriTrack01/src/assets/php/logout.php')
         .then(() => {
             location.href = 'index.html';
         })

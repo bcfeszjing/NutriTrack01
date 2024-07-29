@@ -4,11 +4,12 @@
 session_start();
 require 'vendor/autoload.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nutritrack";
-$port = 3307; // Adjust if your MySQL server runs on a different port
+// Remote database connection details
+$servername = "sql12.freesqldatabase.com";
+$usernameDB = "sql12722639";
+$passwordDB = "paN7mzzK8i"; 
+$dbname = "sql12722639";
+$port = 3306; 
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['token'])) {
 
     if ($result->num_rows > 0) {
         // Token is valid, redirect to the reset password form with token
-        header("Location: ../resetPassword.html?token=" . urlencode($token));
+        header("Location: ../html/resetPassword.html?token=" . urlencode($token));
         exit();
     } else {
         echo "Invalid or expired token.";
@@ -48,11 +49,11 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['token']) && isset
 
     if ($stmt->execute()) {
         // Password updated successfully, redirect with success message
-        header("Location: ../resetPassword.html?message=" . urlencode("Password has been reset successfully."));
+        header("Location: ../html/resetPassword.html?message=" . urlencode("Password has been reset successfully."));
         exit();
     } else {
         // Error updating password, redirect with error message
-        header("Location: ../resetPassword.html?message=" . urlencode("Error updating password: " . $stmt->error));
+        header("Location: ../html/resetPassword.html?message=" . urlencode("Error updating password: " . $stmt->error));
         exit();
     }
 }

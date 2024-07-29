@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function fetchFoodDetails(foodName, date, category) {
     const userId = sessionStorage.getItem('userId'); // Assuming user ID is stored in sessionStorage
 
-    fetch(`/NutriTrack/www/php/getFoodDetails.php?user_id=${userId}&food_name=${foodName}&date=${date}&category=${category}`)
+    fetch(`/NutriTrack01/src/assets/php/getFoodDetails.php?user_id=${userId}&food_name=${foodName}&date=${date}&category=${category}`)
         .then(response => response.json())
         .then(foodDetails => {
             if (foodDetails) {
@@ -101,7 +101,7 @@ function saveEditedFood() {
         }
     };
 
-    fetch('/NutriTrack/www/php/updateFoodDetails.php', {
+    fetch('/NutriTrack01/src/assets/php/updateFoodDetails.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ function saveEditedFood() {
     .then(data => {
         if (data.success) {
             alert('Food details updated successfully!');
-            window.location.href = 'nutrition.html';
+            window.location.href = '../html/nutrition.html';
         } else {
             console.error('Failed to update food details:', data.error);
             alert('Failed to update food details.');
@@ -136,7 +136,7 @@ function deleteFood() {
         category
     };
 
-    fetch('/NutriTrack/www/php/deleteFoodDetails.php', {
+    fetch('/NutriTrack01/src/assets/php/deleteFoodDetails.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ function deleteFood() {
     .then(data => {
         if (data.success) {
             alert('Food deleted successfully!');
-            window.location.href = 'nutrition.html'; // Navigate back to nutrition.html
+            window.location.href = '../html/nutrition.html'; // Navigate back to nutrition.html
         } else {
             console.error('Error deleting food:', data.error);
         }

@@ -8,19 +8,20 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nutritrack";
-$port = 3307;
+// Remote database connection details
+$servername = "sql12.freesqldatabase.com";
+$usernameDB = "sql12722639";
+$passwordDB = "paN7mzzK8i"; 
+$dbname = "sql12722639";
+$port = 3306; 
 
 // Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
+$conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname, $port);
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo json_encode(['success' => false, 'message' => 'Database connection failed: ' . $conn->connect_error]);
+    exit();
 }
 
 // Get the period from the request
@@ -59,6 +60,11 @@ $sql = "SELECT category, date, food_name, serving_size, calories FROM user_food_
 
 // Prepare and execute the query
 $stmt = $conn->prepare($sql);
+if ($stmt === false) {
+    echo json_encode(['success' => false, 'message' => 'Query preparation failed: ' . $conn->error]);
+    $conn->close();
+    exit();
+}
 $stmt->bind_param('ssi', $startDate, $endDate, $user_id);
 $stmt->execute();
 $result = $stmt->get_result();

@@ -6,11 +6,12 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nutritrack";
-$port = 3307; // Adjust if your MySQL server runs on a different port
+// Remote database connection details
+$servername = "sql12.freesqldatabase.com";
+$usernameDB = "sql12722639";
+$passwordDB = "paN7mzzK8i"; 
+$dbname = "sql12722639";
+$port = 3306; 
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
@@ -50,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
             // Generate reset link
-            $reset_link = "http://localhost/NutriTrack/www/php/resetPassword.php?token=$token";
+            $reset_link = "http://localhost/NutriTrack01/src/assets/php/resetPassword.php?token=$token";
 
             // Send email using Elastic Email API
             $apiKey = '5C12CA309D6D39028C0D41CAEF50C396C18706A1B5021D286669F4B246BEC585A4CF59BFA899B8561F6A5A4F0784D7EF';

@@ -1,10 +1,12 @@
 <?php
-// Database connection details
-$servername = "localhost";
-$usernameDB = "root";
-$passwordDB = ""; 
-$dbname = "nutritrack";
-$port = 3307;
+session_start();
+
+// Remote database connection details
+$servername = "sql12.freesqldatabase.com";
+$usernameDB = "sql12722639";
+$passwordDB = "paN7mzzK8i"; 
+$dbname = "sql12722639";
+$port = 3306; 
 
 // Initialize variables to store user input and error messages
 $username = $email = $password = '';
