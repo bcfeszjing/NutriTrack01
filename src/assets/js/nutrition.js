@@ -38,7 +38,7 @@ function displayNutritionDetails() {
                     foodItem.className = 'food-item';
                     foodItem.innerHTML = `
                         <span>${food.food_name} - ${food.calories} kcal</span>
-                        <img src="../img/three-horizontal-dots-icon.png" alt="details" class="view-details" onclick="viewFoodDetails('${food.food_name}', '${selectedDate}', '${category}')">
+                         <img src="../img/three-horizontal-dots-icon.png" alt="details" class="view-details" onclick="viewFoodDetails('${food.food_name}', '${selectedDate}', '${category}')">
                     `;
                     categoryContainer.appendChild(foodItem);
                 });
@@ -52,10 +52,10 @@ function displayNutritionDetails() {
 function goToAddFoodDetails(category) {
     const selectedDate = document.getElementById('date').value;
     const queryString = `date=${encodeURIComponent(selectedDate)}&category=${encodeURIComponent(category)}`;
-    window.location.href = `../html/addFoodDetails.html?${queryString}`;
+    window.location.href = `addFoodDetails.html?${queryString}`;
 }
 
 function viewFoodDetails(foodName, date, category) {
     const queryString = `foodName=${encodeURIComponent(foodName)}&date=${encodeURIComponent(date)}&category=${encodeURIComponent(category)}`;
-    window.location.href = `../html/foodDetails.html?${queryString}`;
+    window.location.href = `foodDetails.html?${queryString}`;
 }
