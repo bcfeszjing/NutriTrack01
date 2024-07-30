@@ -54,6 +54,7 @@
                         const data = await response.json();
                         
                         if (response.ok && data.success) {
+                            sessionStorage.setItem('userId', data.user_id);
                             window.location.href = '../html/home.html'; // Redirect on successful login
                         } else {
                             errorMessage.textContent = data.message; // Display error message

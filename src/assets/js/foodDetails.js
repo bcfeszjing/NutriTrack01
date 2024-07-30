@@ -1,16 +1,23 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    const params = new URLSearchParams(window.location.search);
-    const foodName = params.get('foodName');
-    const date = params.get('date');
-    const category = params.get('category');
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) {
+        alert('User not logged in. Redirecting to login page.');
+        window.location.href = 'login.html'; // Redirect to login page
+    } else {
+        console.log('User ID from sessionStorage:', userId); // Debugging log
+        const params = new URLSearchParams(window.location.search);
+        const foodName = params.get('foodName');
+        const date = params.get('date');
+        const category = params.get('category');
 
-    fetchFoodDetails(foodName, date, category);
+        fetchFoodDetails(userId, foodName, date, category);
+    }
 });
 
-function fetchFoodDetails(foodName, date, category) {
-    const userId = sessionStorage.getItem('userId'); // Assuming user ID is stored in sessionStorage
-
-    fetch(`../php/getFoodDetails.php?user_id=${userId}&food_name=${foodName}&date=${date}&category=${category}`)
+function fetchFoodDetails(userId, foodName, date, category) {
+    const url = `../php/getFoodDetails.php?user_id=${userId}&food_name=${foodName}&date=${date}&category=${category}`;
+    
+    fetch(url)
         .then(response => response.json())
         .then(foodDetails => {
             if (foodDetails) {

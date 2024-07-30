@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['original_password'] = $pass; // Store the original password in the session
             $_SESSION['password_length'] = strlen($pass); // Store the original password length in the session
             $response['success'] = true;
+            $response['user_id'] = $row['id'];
             $response['message'] = 'Login successful.';
         } else {
             // Password does not match
